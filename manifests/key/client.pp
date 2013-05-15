@@ -11,11 +11,11 @@
 #       ensure   => $ensure,
 #       filename => $_filename,
 #       user     => $_user,
-#       tag      => $name,
+#       tag      => $_tag,
 #   }
 #   
 #   # from sshauth::client
-#   Sshauth::Key::Client <<| tag == $name |>>
+#   Sshauth::Key::Client <<| tag == $_tag |>>
 #
 define sshauth::key::client (
     $user,

@@ -11,11 +11,11 @@
 #       ensure  => $ensure,
 #       user    => $_user,
 #       options => $options,
-#       tag     => $name,
+#       tag     => $_tag,
 #   }
 #   
 #   # from sshauth::server
-#   Sshauth::Key::Server <<| tag == $name |>>
+#   Sshauth::Key::Server <<| tag == $_tag |>>
 #
 define sshauth::key::server (
     $ensure,

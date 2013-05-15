@@ -68,7 +68,8 @@ define sshauth::key (
         'rsa' => $length,
         'dsa' => '1024',
     }
-    
+
+    $_tag = $name
 
 
     # verify syntax of keyname/filename
@@ -91,7 +92,7 @@ define sshauth::key (
         length  => $_length,
         maxdays => $maxdays,
         mindate => $mindate,
-        tag     => $name,
+        tag     => $_tag,
     }
 
     # generate exported resources for the ssh client host to realize
@@ -99,7 +100,7 @@ define sshauth::key (
         ensure   => $ensure,
         filename => $_filename,
         user     => $_user,
-        tag      => $name,
+        tag      => $_tag,
     }
 
     # generate exported resources for the ssh server host to realize
@@ -107,7 +108,7 @@ define sshauth::key (
         ensure  => $ensure,
         user    => $_user,
         options => $options,
-        tag     => $name,
+        tag     => $_tag,
     }
 
 }
