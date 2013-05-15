@@ -31,7 +31,7 @@ define sshauth::client (
     $filename = '',
 ) {
 
-    $_tag = $name
+    $_tag = regsubst($name, '@', '_at_')
 
     # Override the defaults set in sshauth::key, as needed.
 

@@ -27,7 +27,7 @@ define sshauth::server (
     $options = '',
 ) {
 
-    $_tag = $name
+    $_tag = regsubst($name, '@', '_at_')
     # Override the defaults set in sshauth::key, as needed.
 
     # This is ugly, but we need to accomodate every permutation of the 

@@ -69,7 +69,7 @@ define sshauth::key (
         'dsa' => '1024',
     }
 
-    $_tag = $name
+    $_tag = regsubst($name, '@', '_at_')
 
 
     # verify syntax of keyname/filename
