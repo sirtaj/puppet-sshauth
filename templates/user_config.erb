@@ -2,9 +2,9 @@
 
 <% ssh_aliases.each do |alias_and_options| %>
 Host <%= alias_and_options[0] %>
-    Hostname <%- alias_and_options[1].hostname -%>
-    User <%- alias_and_options[1].user -%>
-    IdentityFile <%- alias_and_options[1].file -%>
+    Hostname <%- alias_and_options[1].["hostname"] -%>
+    User <%- alias_and_options[1].["user"] -%>
+    IdentityFile <%- alias_and_options[1].["file"] -%>
     IdentitiesOnly yes
 <% end %>
 
