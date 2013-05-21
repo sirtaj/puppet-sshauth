@@ -1,4 +1,4 @@
-# File managed by puppet
+# This file is managed by puppet. You can still edit this file manually. However, it is not advisable.
 
 <% ssh_aliases.each do |alias_and_options| %>
 Host <%= alias_and_options[0] %>
@@ -6,10 +6,5 @@ Host <%= alias_and_options[0] %>
     User <%= alias_and_options[1]["user"] %>
     IdentityFile <%= alias_and_options[1]["file"] %>
     IdentitiesOnly yes
-<% end %>
 
-Host github.com
-        Hostname github.com
-        User git
-        IdentityFile ~/.ssh/devops@big-bang
-        IdentitiesOnly yes
+<% end %>
