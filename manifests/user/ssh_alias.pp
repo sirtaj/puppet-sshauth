@@ -1,0 +1,32 @@
+define sshauth::user::ssh_alias (
+    $user,
+    $ssh_alias = {},
+    $target    = '',
+    $order     = 100,
+) {
+
+    $home = gethomedir($user)
+    $_target = $target ? {
+        ''      => "${home}/.ssh/config",
+        default => $target,
+    }
+
+    if !defined(Concat[$_target]) {
+        concat { $_target:
+            owner => $user,
+            group => $user,
+            mode  => 640,
+        }
+        concat::fragment { "${_target}_header":
+            target  => $_target,
+            content => "#File Managed by Puppet. Modifications are not recommended.",
+            order   => 01,
+        }
+    }
+
+    concat::fragment { $name:
+        target  => $_target,
+        content => template('sshauth/ssh_alias.erb'),
+        order   => $order,
+    }
+}

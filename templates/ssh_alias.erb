@@ -1,0 +1,12 @@
+Host <%= @ssh_alias['name'] %>
+    <%- if @ssh_alias['hostname'] -%>
+    Hostname <%= @ssh_alias['hostname'] %>
+    <%- end -%>
+    <%- if @ssh_alias['user'] -%>
+    User <%= @ssh_alias['user'] %>
+    <%- end -%>
+    <%- if @ssh_alias['file'] -%>
+    IdentityFile <%= @ssh_alias['file'] %>
+    <%- end -%>
+    IdentitiesOnly yes
+
