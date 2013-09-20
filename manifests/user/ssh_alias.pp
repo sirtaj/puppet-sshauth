@@ -11,6 +11,7 @@ define sshauth::user::ssh_alias (
         default => $target,
     }
 
+    include concat::setup
     if !defined(Concat[$_target]) {
         concat { $_target:
             owner => $user,
