@@ -20,7 +20,7 @@ define sshauth::user::ssh_alias (
         }
         concat::fragment { "${_target}_header":
             target  => $_target,
-            content => "#File Managed by Puppet. Modifications are not recommended.",
+            content => "#File Managed by Puppet. Modifications are not recommended.\n\n",
             order   => 01,
         }
     }
