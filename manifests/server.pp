@@ -27,6 +27,7 @@ define sshauth::server (
     $options = '',
 ) {
 
+    $_tag = regsubst($name, '@', '_at_')
     # Override the defaults set in sshauth::key, as needed.
 
     # This is ugly, but we need to accomodate every permutation of the 
@@ -34,7 +35,7 @@ define sshauth::server (
     #
     if ( $user and $ensure and $options ) {
 	#notify {"sshauth::server: user and ensure and options":}
-        Sshauth::Key::Server <<| tag == $name |>> {
+        Sshauth::Key::Server <<| tag == $_tag |>> {
             user	=> $user,
             ensure	=> $ensure,
             options	=> $options,
@@ -42,46 +43,46 @@ define sshauth::server (
 
     } elsif ( $user and $ensure ) {
 	#notify {"sshauth::server: user and ensure":}
-        Sshauth::Key::Server <<| tag == $name |>> {
+        Sshauth::Key::Server <<| tag == $_tag |>> {
             ensure	=> $ensure,
             user	=> $user,
         }
 
     } elsif ( $user and $options ) {
 	#notify {"sshauth::server: user and options":}
-        Sshauth::Key::Server <<| tag == $name |>> {
+        Sshauth::Key::Server <<| tag == $_tag |>> {
             user	=> $user,
             options	=> $options,
         }
 
     } elsif ( $options and $ensure ) {
 	#notify {"sshauth::server: options and ensure":}
-        Sshauth::Key::Server <<| tag == $name |>> {
+        Sshauth::Key::Server <<| tag == $_tag |>> {
             ensure	=> $ensure,
             options	=> $options,
         }
 
     } elsif $user {
 	#notify {"sshauth::server: user only":}
-        Sshauth::Key::Server <<| tag == $name |>> {
+        Sshauth::Key::Server <<| tag == $_tag |>> {
             user	=> $user,
         }
 
     } elsif $ensure {
 	#notify {"sshauth::server: ensure only":}
-        Sshauth::Key::Server <<| tag == $name |>> {
+        Sshauth::Key::Server <<| tag == $_tag |>> {
             ensure	=> $ensure,
         }
 
     } elsif $options {
 	#notify {"sshauth::server: options only":}
-        Sshauth::Key::Server <<| tag == $name |>> {
+        Sshauth::Key::Server <<| tag == $_tag |>> {
             options	=> $options,
         }
 
     } else {
 	#notify {"sshauth::server: default":}
-        Sshauth::Key::Server <<| tag == $name |>>
+        Sshauth::Key::Server <<| tag == $_tag |>>
     }
 
 }

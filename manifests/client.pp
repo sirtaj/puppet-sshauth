@@ -31,6 +31,8 @@ define sshauth::client (
     $filename = '',
 ) {
 
+    $_tag = regsubst($name, '@', '_at_')
+
     # Override the defaults set in sshauth::key, as needed.
 
     # This is ugly, but we need to accomodate every permutation of the 
@@ -38,7 +40,7 @@ define sshauth::client (
     #
     if ( $user and $ensure and $filename ) {
 	#notify {"sshauth::client: user ensure filename":}
-        Sshauth::Key::Client <<| tag == $name |>> {
+        Sshauth::Key::Client <<| tag == $_tag |>> {
             user        => $user,
             ensure      => $ensure,
             filename    => $filename,
@@ -46,46 +48,46 @@ define sshauth::client (
 
     } elsif ( $user and $ensure ) {
    	#notify {"sshauth::client: user and ensure":}
-        Sshauth::Key::Client <<| tag == $name |>> {
+        Sshauth::Key::Client <<| tag == $_tag |>> {
             user        => $user,
             ensure      => $ensure,
         }
 
     } elsif ( $ensure and $filename ) {
   	#notify {"sshauth::client: ensure and filename":}
-        Sshauth::Key::Client <<| tag == $name |>> {
+        Sshauth::Key::Client <<| tag == $_tag |>> {
             ensure      => $ensure,
             filename     => $filename,
         }
 
     } elsif ( $user and $filename ) {
   	#notify {"sshauth::client: user and filename":}
-        Sshauth::Key::Client <<| tag == $name |>> {
+        Sshauth::Key::Client <<| tag == $_tag |>> {
             user      => $user,
             filename     => $filename,
         }
 
     } elsif ( $user ) {
  	#notify {"sshauth::client: user only":}
-        Sshauth::Key::Client <<| tag == $name |>> {
+        Sshauth::Key::Client <<| tag == $_tag |>> {
             user      => $user,
         }
 
     } elsif ( $ensure ) {
 	#notify {"sshauth::client: ensure only":}
-        Sshauth::Key::Client <<| tag == $name |>> {
+        Sshauth::Key::Client <<| tag == $_tag |>> {
             ensure      => $ensure,
         }
 
     } elsif ( $filename ) {
  	#notify {"sshauth::client: filename only":}
-        Sshauth::Key::Client <<| tag == $name |>> {
+        Sshauth::Key::Client <<| tag == $_tag |>> {
             filename      => $filename,
         }
 
     } else {
 	#notify {"sshauth::client: default":}
-        Sshauth::Key::Client <<| tag == $name |>>
+        Sshauth::Key::Client <<| tag == $_tag |>>
     }
 
 }
