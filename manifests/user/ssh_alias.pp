@@ -15,7 +15,6 @@ define sshauth::user::ssh_alias (
     if !defined(Concat[$_target]) {
         concat { $_target:
             owner => $user,
-            group => $user,
             mode  => 640,
         }
         concat::fragment { "${_target}_header":
