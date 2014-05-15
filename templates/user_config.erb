@@ -1,0 +1,10 @@
+# This file is managed by puppet. You can still edit this file manually. However, it is not advisable.
+
+<% ssh_aliases.keys.sort.each do |alias_and_options| %>
+Host <%= alias_and_options %>
+    Hostname <%= ssh_aliases[alias_and_options]["hostname"] %>
+    User <%= ssh_aliases[alias_and_options]["user"] %>
+    IdentityFile <%= ssh_aliases[alias_and_options]["file"] %>
+    IdentitiesOnly yes
+
+<% end %>
